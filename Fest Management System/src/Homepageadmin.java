@@ -1,0 +1,2049 @@
+
+import java.awt.Color;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author vaibhav
+ */
+public class Homepageadmin extends javax.swing.JFrame {
+    Connection conn=null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    /**
+     * Creates new form Homepageadmin
+     */
+    public Homepageadmin() {
+        initComponents();
+        conn=javaconnect.ConnecrDb();
+        Update_table_day1();
+        room_table();
+    }
+    private void room_table(){
+        String sql="select * from HallList";
+        try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            roomtable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+            try{
+                rs.close();
+                pst.close();
+            }
+            catch(SQLException | HeadlessException e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+    }
+    private void Update_table_day1(){
+        String sql="select * from Day1events";
+        try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            a_etable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){
+            
+        }
+    }
+    }
+    private void Update_table_day2(){
+        String sql="select * from Day2events";
+        try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            a_etable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){
+            
+        }
+    }
+    }
+    private void Update_table_day3(){
+        String sql="select * from Day3events";
+        try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            a_etable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){
+            
+        }
+    }
+    }
+    private void Update_table_sort(int x){
+        
+        String value=a_sort.getSelectedItem().toString();
+        
+        String sql="select * from Day"+x+"events order by ";
+        if(value.equals("End Time")){
+            sql+="Endtime";
+            try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            a_etable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){}
+        }   
+      }
+        else if(value.equals("Seats")){
+            sql+="Seats";
+            try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            a_etable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){}
+        }   
+      }
+        else if(value.equals("Start Time")){
+            sql+="Starttime";
+            try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            a_etable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){}
+        }   
+      }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        a_stime = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        a_name = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        a_id = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        a_etime = new javax.swing.JTextField();
+        a_description = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        clear_a = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        a_seats = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        a_venue = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        e_end1 = new javax.swing.JTextField();
+        e_name = new javax.swing.JTextField();
+        e_end2 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        e_start2 = new javax.swing.JTextField();
+        e_description = new javax.swing.JTextField();
+        e_start1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        clear_e = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        e_seats = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        e_venue = new javax.swing.JTextField();
+        e_day = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        ROOMS = new javax.swing.JTextField();
+        NAME = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        VACANCY = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        COST = new javax.swing.JTextField();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        HALLID = new javax.swing.JTextField();
+        jPanel8 = new javax.swing.JPanel();
+        acost = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        hallnames = new javax.swing.JTextField();
+        totalrooms = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        a_day = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        sort_2 = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        a_sort = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        a_etable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        roomtable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel2.setFont(new java.awt.Font("Utopia", 3, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 31));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/balloons.png"))); // NOI18N
+        jLabel2.setText("SPRING FEST, IIT KHARAGPUR");
+
+        jLabel4.setFont(new java.awt.Font("Utopia", 3, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(71, 130, 220));
+        jLabel4.setText("EVENTS");
+
+        jLabel5.setFont(new java.awt.Font("Utopia", 3, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(86, 96, 215));
+        jLabel5.setText("ACCOMMODATION");
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Existing Events", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Utopia", 3, 24), new java.awt.Color(224, 31, 31))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel9.setText("End Time");
+
+        a_stime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                a_stimeActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel7.setText("Event Name");
+
+        jLabel10.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel10.setText("Description");
+
+        a_id.setEditable(false);
+
+        jLabel6.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel6.setText("Event ID");
+
+        jLabel8.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel8.setText("Start Time");
+
+        jButton3.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 0, 0));
+        jButton3.setText("Update");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        clear_a.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        clear_a.setForeground(new java.awt.Color(255, 0, 0));
+        clear_a.setText("Clear");
+        clear_a.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_aActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 0, 0));
+        jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel25.setText("Seats");
+
+        jLabel27.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel27.setText("Venue");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel9)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel7))
+                            .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(a_stime, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(a_name)
+                            .addComponent(a_description)
+                            .addComponent(a_etime)
+                            .addComponent(a_id)
+                            .addComponent(a_seats)
+                            .addComponent(a_venue)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(clear_a, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(a_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(a_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(a_stime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(a_etime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(a_description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(a_seats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(a_venue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3)
+                    .addComponent(clear_a))
+                .addContainerGap())
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Events", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Utopia", 3, 24), new java.awt.Color(187, 27, 27))); // NOI18N
+
+        jLabel19.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel19.setText("Start Time");
+
+        jLabel20.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel20.setText("End Time");
+
+        jLabel17.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel17.setText("Day");
+
+        jLabel18.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel18.setText("Event Name");
+
+        jLabel21.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel21.setText("Description");
+
+        jLabel22.setText(": ");
+
+        jLabel23.setText(":");
+
+        e_start2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                e_start2ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        clear_e.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        clear_e.setText("Clear");
+        clear_e.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_eActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel24.setText("Seats");
+
+        jLabel28.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel28.setText("Venue");
+
+        e_day.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day1", "Day2", "Day3" }));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel19)
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel20)
+                                .addComponent(jLabel17)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(e_day, 0, 166, Short.MAX_VALUE)
+                            .addComponent(e_name)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(e_start1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                                    .addComponent(e_end1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(e_end2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(e_start2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(e_description, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(e_seats)
+                            .addComponent(e_venue)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(clear_e, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(e_day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(e_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(e_start1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(e_start2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(e_end1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel23)
+                        .addComponent(e_end2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(e_description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(e_seats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(e_venue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(clear_e))
+                .addContainerGap())
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Existing Residency", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Utopia", 3, 24), new java.awt.Color(213, 17, 68))); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel12.setText("Number of Rooms");
+
+        jLabel11.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel11.setText("Hall Name");
+
+        NAME.setEditable(false);
+
+        jLabel13.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel13.setText("Vacancy");
+
+        VACANCY.setEditable(false);
+
+        jLabel33.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel33.setText("Accommodation Cost");
+
+        jButton15.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(255, 0, 0));
+        jButton15.setText("Delete");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(255, 0, 0));
+        jButton16.setText("Update");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jButton17.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton17.setForeground(new java.awt.Color(255, 0, 0));
+        jButton17.setText("Clear");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel26.setText("Hall ID");
+
+        HALLID.setEditable(false);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel33)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel26)
+                        .addComponent(jLabel11)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(NAME)
+                    .addComponent(ROOMS)
+                    .addComponent(VACANCY)
+                    .addComponent(COST, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(HALLID))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(71, Short.MAX_VALUE)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel26)
+                    .addComponent(HALLID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NAME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(ROOMS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VACANCY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel33)
+                    .addComponent(COST, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton16)
+                    .addComponent(jButton15)
+                    .addComponent(jButton17))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "New Room", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Utopia", 3, 24), new java.awt.Color(186, 24, 24))); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel15.setText("Total Rooms");
+
+        jLabel14.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel14.setText("Hall Name");
+
+        jLabel36.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(87, 85, 199));
+        jLabel36.setText("Accommodation Cost");
+
+        jButton13.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton13.setText("Save");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jButton14.setText("Clear");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel36))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(totalrooms)
+                    .addComponent(acost)
+                    .addComponent(hallnames)
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(totalrooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hallnames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(acost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton14))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 46, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 338, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+
+        a_day.setFont(new java.awt.Font("Utopia", 2, 18)); // NOI18N
+        a_day.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day1", "Day2", "Day3" }));
+        a_day.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                a_dayItemStateChanged(evt);
+            }
+        });
+        a_day.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_dayMouseClicked(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(56, 1, 147));
+        jLabel16.setText("Day:");
+
+        sort_2.setFont(new java.awt.Font("Utopia", 2, 18)); // NOI18N
+        sort_2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hall ID", "Available Rooms", "Hall Name" }));
+        sort_2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sort_2ItemStateChanged(evt);
+            }
+        });
+        sort_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sort_2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(56, 1, 147));
+        jLabel3.setText("Sort By:");
+
+        jLabel1.setFont(new java.awt.Font("Utopia", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(56, 1, 147));
+        jLabel1.setText("Sort By:");
+
+        a_sort.setFont(new java.awt.Font("Utopia", 2, 18)); // NOI18N
+        a_sort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Start Time", "End Time", "Seats" }));
+        a_sort.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                a_sortItemStateChanged(evt);
+            }
+        });
+        a_sort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_sortMouseClicked(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Events Schedule", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Utopia", 3, 24), new java.awt.Color(0, 144, 50))); // NOI18N
+
+        a_etable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        a_etable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_etableMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(a_etable);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jButton7.setFont(new java.awt.Font("Utopia", 3, 24)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(18, 1, 168));
+        jButton7.setText("Money Approval");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Utopia", 3, 24)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(18, 1, 168));
+        jButton6.setText("REPORTS");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton6)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton7))
+                .addContainerGap())
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Utopia", 3, 24), new java.awt.Color(1, 159, 44))); // NOI18N
+
+        roomtable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        roomtable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roomtableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(roomtable);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(461, 461, 461)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(206, 206, 206)
+                                .addComponent(jButton1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(115, 115, 115)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sort_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 68, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(537, 537, 537))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(a_day, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(179, 179, 179)
+                                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(a_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(329, 329, 329))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jButton1))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(a_day, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(a_sort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel4)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(sort_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(16, 16, 16)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        setSize(new java.awt.Dimension(2170, 1192));
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void a_stimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_a_stimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a_stimeActionPerformed
+
+    private void a_sortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_sortMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a_sortMouseClicked
+
+    private void a_dayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_dayMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a_dayMouseClicked
+
+    private void a_sortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_a_sortItemStateChanged
+        // TODO add your handling code here:
+        String value=a_day.getSelectedItem().toString();
+        if(value.equals("Day1")){
+            Update_table_sort(1);
+        }
+        else if(value.equals("Day2")){
+            Update_table_sort(2);
+        }
+        else if(value.equals("Day3")){
+            Update_table_sort(3);
+        } else {
+        }
+    }//GEN-LAST:event_a_sortItemStateChanged
+
+    private void a_dayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_a_dayItemStateChanged
+        // TODO add your handling code here:
+        String value=a_day.getSelectedItem().toString();
+        if(value.equals("Day1")){
+            Update_table_day1();
+        }
+        else if(value.equals("Day2")){
+            Update_table_day2();
+        }
+        else if(value.equals("Day3")){
+            Update_table_day3();
+        } else {
+        }
+    }//GEN-LAST:event_a_dayItemStateChanged
+
+    private void e_start2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_e_start2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_e_start2ActionPerformed
+    private void clear_event_pannel(){
+            a_name.setText("");
+        a_stime.setText("");
+        a_description.setText("");
+        a_id.setText("");
+        a_etime.setText("");
+        a_seats.setText("");
+        a_venue.setText("");
+        
+}
+    private void clear_aActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_aActionPerformed
+        // TODO add your handling code here:
+        clear_event_pannel();
+    }//GEN-LAST:event_clear_aActionPerformed
+
+    private void a_etableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_etableMouseClicked
+        // TODO add your handling code here:
+        try{
+            String value=a_day.getSelectedItem().toString();
+            int row = a_etable.getSelectedRow();
+            String Table_click=(a_etable.getModel().getValueAt(row, 0).toString());
+            String sql="select * from "+value+"events where Eventid='"+Table_click+"'";
+            pst= conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                a_id.setText(rs.getString("Eventid"));
+                a_name.setText(rs.getString("Eventname"));
+                a_stime.setText(rs.getString("Starttime"));
+                a_etime.setText(rs.getString("Endtime"));
+                a_description.setText(rs.getString("Description"));
+                a_seats.setText(rs.getString("Seats"));
+                a_venue.setText(rs.getString("Venue"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_a_etableMouseClicked
+}
+    private void clear_save2(){
+            totalrooms.setText("");
+            hallnames.setText("");
+            acost.setText("");
+    }
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        clear_save2();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        Reports sd = new Reports();
+        sd.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+    private int update_event(String s,int day,int count){
+        String Eventid=s;
+        String Starttime=null;
+        String Endtime=null;
+        String Venue=null;
+        String Description=null;
+        String Seats=null;
+        String Eventname=null;
+        String Availableseats=null;
+        int flag=1;
+        try{
+            pst.close();
+            rs.close();
+            String sql="select * from Day"+day+"events where Eventid = ?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1,Eventid);
+            rs=pst.executeQuery();   
+            if(rs.next()){
+                Starttime=rs.getString("Starttime");
+                Endtime=rs.getString("Endtime");
+                Venue=rs.getString("Venue");
+                Description=rs.getString("Description");
+                Seats=rs.getString("Seats");
+                Eventname=rs.getString("Eventname");
+                Availableseats=rs.getString("Availableseats");
+                flag=1;
+            }
+            else{
+                flag=0;
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+                if(flag==0)
+                    return 0; //not in this day
+                else if(Integer.parseInt(Availableseats)>=count)
+                    { }
+                else
+                {//  JOptionPane.showMessageDialog(null,"Oops!! "+count +" Seat not Available");  
+                    return -1; //in this day but not enough seats
+                }
+            }catch(Exception e){ 
+                JOptionPane.showMessageDialog(null,"4232323XXXXXay!! day="+day);
+            }
+        }
+        try{
+            String sql="delete from Day"+day+"events where Eventid=?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Eventid);
+            pst.execute();
+            pst.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){    
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+//to change        
+        try{
+            String sql="Insert into Day"+day+"events (Eventid,Starttime,Endtime,Venue,Description,Seats,Eventname,Availableseats) values (?,?,?,?,?,?,?,?)";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Eventid);
+            pst.setString(2, Starttime);
+            pst.setString(3, Endtime);
+            pst.setString(4, Venue);
+            pst.setString(5, Description);
+            pst.setString(6, Seats);
+            pst.setString(7, Eventname);
+            pst.setString(8, Integer.toString(Integer.parseInt(Availableseats)-count));
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Added HuRRay!!");
+        }catch(SQLException | NumberFormatException | HeadlessException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        return 2;
+}
+    private void Update_Event_List(String day) throws SQLException{
+        rs.close();
+        pst.close();
+        String Eventid=a_id.getText();
+        String Starttime=a_stime.getText();
+        String Endtime=a_etime.getText();
+        String Venue=a_venue.getText();
+        String Description=a_description.getText();
+        String Seats=a_seats.getText();
+        String Eventname=null;
+        String OldAvailableseats=null;
+        String OldSeats=null;
+        try{
+            pst.close();
+            rs.close();
+            String sql="select * from "+day+"events where Eventid = ?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1,Eventid);
+            rs=pst.executeQuery();   
+            if(rs.next()){
+                OldSeats=rs.getString("Seats");
+                Eventname=rs.getString("Eventname");
+                OldAvailableseats=rs.getString("Availableseats");
+            }
+        }    
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){ 
+                JOptionPane.showMessageDialog(null,"4232323XXXXXay!! day="+day);
+            }
+        }
+        if(Integer.parseInt(Seats)<(Integer.parseInt(OldSeats)-Integer.parseInt(OldAvailableseats)))
+            {JOptionPane.showMessageDialog(null,"Already "+(Integer.parseInt(OldSeats)-Integer.parseInt(OldAvailableseats))+" seats has been alloted. Please Enter valid information.");
+            return;}        
+        try{
+            String sql="delete from "+day+"events where Eventid=?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Eventid);
+            pst.execute();
+            pst.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){    
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+//to change        
+        try{
+            String sql="Insert into "+day+"events (Eventid,Starttime,Endtime,Venue,Description,Seats,Eventname,Availableseats) values (?,?,?,?,?,?,?,?)";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Eventid);
+            pst.setString(2, Starttime);
+            pst.setString(3, Endtime);
+            pst.setString(4, Venue);
+            pst.setString(5, Description);
+            int presenttotalrooms=Integer.parseInt(OldSeats);
+            int newtotalrooms=Integer.parseInt(Seats);
+            int r=0;
+            int k=0;
+            if(presenttotalrooms>=newtotalrooms)
+            {   r=presenttotalrooms-newtotalrooms;
+                k=Integer.parseInt(OldAvailableseats)-r;
+            }else
+            {   r=newtotalrooms-presenttotalrooms;
+                k=Integer.parseInt(OldAvailableseats)+r;
+            }
+            pst.setString(6, Seats);
+            pst.setString(7, Eventname);
+            pst.setString(8, Integer.toString(k));
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Added HuRRay!!");
+        }catch(SQLException | NumberFormatException | HeadlessException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        switch (day.charAt(3)) {
+            case '1':
+                Update_table_day1();
+                break;
+            case '2':
+                Update_table_day2();
+                break;
+            case '3':
+                Update_table_day3();
+                break;
+            default:
+                break;
+        }
+}        
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String s=a_day.getSelectedItem().toString();
+        try {
+            Update_Event_List(s);
+            clear_event_pannel();
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(Homepageadmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        Moneyapproval ma = new Moneyapproval();
+        ma.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+    private String findid(){
+        int id=1;
+        int a=0;    //day1 max id
+        int b=0;//day2 max id
+        int c=0;//day3 max id
+        int max=0;
+        try{
+            String sql="select Eventid from Day1events";
+            pst= conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            while(rs.next())
+            {    a=Integer.parseInt(rs.getString("Eventid"));
+                if(a>=max){
+                    max=a;
+                }
+            }
+            a=max;
+        }catch(SQLException | NumberFormatException e){     
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        try{
+            String sql="select Eventid from Day2events";
+            pst= conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            while(rs.next())
+            {    b=Integer.parseInt(rs.getString("Eventid"));
+                if(b>=max){
+                    max=b;
+                }
+            }
+            b=max;
+        }catch(SQLException | NumberFormatException e){     
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }try{
+            String sql="select Eventid from Day3events";
+            pst= conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            while(rs.next())
+            {    c=Integer.parseInt(rs.getString("Eventid"));
+                if(c>=max){
+                    max=c;
+                }
+            }
+            c=max;
+        }catch(SQLException | NumberFormatException e){     
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        if(a>=b && a>=c)
+           id=a;
+        else if(b>=a && b>=c)
+            id = b;
+        else id=c;
+        return Integer.toString(id+1);
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String day=e_day.getSelectedItem().toString();
+        String daybox=a_day.getSelectedItem().toString();
+        String name=e_name.getText();
+        String start1=e_start1.getText();
+        String start2=e_start2.getText();
+        String end1=e_end1.getText();
+        String end2=e_end2.getText();
+        String description=e_description.getText();
+        String seats=e_seats.getText();
+        String venue=e_venue.getText();
+        String Eventid=findid();
+        try{
+            String sql="Insert into "+day+"events (Eventid,Starttime,Endtime,Venue,Description,Seats,Eventname,Availableseats) values (?,?,?,?,?,?,?,?)";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Eventid);
+            pst.setString(2, start1+":"+start2);
+            pst.setString(3, end1+":"+end2);
+            pst.setString(4, venue);
+            pst.setString(5, description);
+            pst.setString(6, seats);
+            pst.setString(7, name);
+            pst.setString(8, seats);
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Added HuRRay!!");
+        }catch(SQLException | NumberFormatException | HeadlessException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        if(day.equals(daybox)){
+            switch (day.charAt(3)) {
+                case '1':
+                    Update_table_day1();
+                    break;
+                case '2':
+                    Update_table_day2();
+                    break;
+                case '3':
+                    Update_table_day3();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    private void clear_save1(){
+            e_name.setText("");
+        e_venue.setText("");
+        e_description.setText("");
+        e_start1.setText("");
+        e_start2.setText("");
+        e_end1.setText("");
+        e_end2.setText("");
+        e_seats.setText("");
+}
+    private void clear_eActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_eActionPerformed
+        // TODO add your handling code here:
+        clear_save1();
+    }//GEN-LAST:event_clear_eActionPerformed
+    private String findidhall() throws SQLException{
+        int a=0;
+        rs.close();
+        pst.close();
+        int max=0;
+        try{
+            String sql="select HallID from HallList";
+            pst= conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            
+            while(rs.next())
+            {    a=Integer.parseInt(rs.getString("HallID"));
+                if(a>=max){
+                    max=a;
+                }
+            }
+            a=max;
+        }catch(SQLException | NumberFormatException e){     
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        return Integer.toString(a+1);
+    }
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        String Hallid="0";
+        try {
+            Hallid = findidhall();
+        } catch (SQLException ex) {
+            Logger.getLogger(Homepageadmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String totalroom=totalrooms.getText();
+        String hallname=hallnames.getText();
+        String acos=acost.getText();
+        
+        try{
+            String sql="Insert into HallList (HallID,HallName,Total_Rooms,Available_Rooms,Tarrif,Room_No_filled) values (?,?,?,?,?,?)";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Hallid);
+            pst.setString(2, hallname);
+            pst.setString(3, totalroom);
+            pst.setString(4, totalroom);
+            pst.setString(5, acos);
+            pst.setString(6, "0");
+            pst.execute();
+        }catch(SQLException | NumberFormatException | HeadlessException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        room_table();
+    }//GEN-LAST:event_jButton13ActionPerformed
+    private void clear_room_pannel(){
+                NAME.setText("");
+        ROOMS.setText("");
+        VACANCY.setText("");
+        COST.setText("");
+        HALLID.setText("");
+    }
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        clear_room_pannel();
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void roomtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomtableMouseClicked
+        // TODO add your handling code here:
+        try{
+            int row = roomtable.getSelectedRow();
+            String Table_click=(roomtable.getModel().getValueAt(row, 0).toString());
+            String sql="select * from HallList where HallID='"+Table_click+"'";
+            pst= conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                HALLID.setText(rs.getString("HallID"));
+                ROOMS.setText(rs.getString("Total_Rooms"));
+                COST.setText(rs.getString("Tarrif"));
+                NAME.setText(rs.getString("HallName"));
+                VACANCY.setText(rs.getString("Available_Rooms"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+    }//GEN-LAST:event_roomtableMouseClicked
+    private void updateroomslist() throws SQLException{
+        rs.close();
+        pst.close();
+        String Hallid=HALLID.getText();
+        String Total_Rooms=null;
+        String Available_Rooms=null;
+        String Tarrif=null;
+        String rftn=null;
+        try{
+            String sql="select * from HallList where HallID = ?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1,Hallid);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                Total_Rooms=rs.getString("Total_Rooms");
+                Available_Rooms=rs.getString("Available_Rooms");
+                Tarrif=rs.getString("Tarrif");
+                rftn=rs.getString("Room_No_filled");
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        if(Integer.parseInt(ROOMS.getText())<Integer.parseInt(rftn))
+            {JOptionPane.showMessageDialog(null,"Already "+rftn+" rooms Have been alloted. Please Enter valid information.");
+            return;}
+        try{
+            String sql="delete from HallList where HallID=?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Hallid);
+            pst.execute();
+            pst.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }   
+        try{
+            String sql="Insert into HallList (HallID,HallName,Total_Rooms,Available_Rooms,Tarrif,Room_No_filled) values (?,?,?,?,?,?)";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Hallid);
+            pst.setString(2, NAME.getText());
+            pst.setString(3, ROOMS.getText());
+            int presenttotalrooms=Integer.parseInt(Total_Rooms);
+            int newtotalrooms=Integer.parseInt(ROOMS.getText());
+            int r=0;
+            int k=0;
+            if(presenttotalrooms>=newtotalrooms)
+            {   r=presenttotalrooms-newtotalrooms;
+                k=Integer.parseInt(Available_Rooms)-r;
+            }else
+            {   r=newtotalrooms-presenttotalrooms;
+                k=Integer.parseInt(Available_Rooms)+r;
+            }
+            String test=Integer.toString(k);
+            pst.setString(4, test);
+            pst.setString(5, Tarrif);
+            pst.setString(6, rftn);
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Added HuRRay!!");
+        }catch(SQLException | NumberFormatException | HeadlessException e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+    }       
+    private void delete_a_hall() throws SQLException{
+    
+        rs.close();
+        pst.close();
+        String Hallid=HALLID.getText();
+        String Total_Rooms=null;
+        String Available_Rooms=null;
+        String rftn=null;
+        try{
+            String sql="select * from HallList where HallID = ?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1,Hallid);
+            rs=pst.executeQuery();
+            if(rs.next()){
+                Total_Rooms=rs.getString("Total_Rooms");
+                Available_Rooms=rs.getString("Available_Rooms");
+                rftn=rs.getString("Room_No_filled");
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        if((Integer.parseInt(Available_Rooms)-Integer.parseInt(Total_Rooms))!=0)
+            {JOptionPane.showMessageDialog(null,"Already "+rftn+" rooms Have been alloted. So,this Hall can't be deleted.");
+            return;}
+        try{
+            String sql="delete from HallList where HallID=?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Hallid);
+            pst.execute();
+            pst.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }   
+    }       
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        try {
+            updateroomslist();
+            room_table();
+            clear_room_pannel();
+        } catch (SQLException ex) {
+            Logger.getLogger(Homepageadmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton16ActionPerformed
+    private void delete_event(String day) throws SQLException{
+        rs.close();
+        pst.close();
+        String Eventid=a_id.getText();
+        String OldAvailableseats=null;
+        String OldSeats=null;
+        try{
+            pst.close();
+            rs.close();
+            String sql="select * from "+day+"events where Eventid = ?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1,Eventid);
+            rs=pst.executeQuery();   
+            if(rs.next()){
+                OldSeats=rs.getString("Seats");
+                OldAvailableseats=rs.getString("Availableseats");
+            }
+        }    
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){ 
+                JOptionPane.showMessageDialog(null,"4232323XXXXXay!! day="+day);
+            }
+        }
+        if((Integer.parseInt(OldSeats)-Integer.parseInt(OldAvailableseats))!=0)
+            {JOptionPane.showMessageDialog(null,"Already "+(Integer.parseInt(OldSeats)-Integer.parseInt(OldAvailableseats))+"Somebody has been alloted this seat. This Event can't be deleted.");
+            return;}        
+        try{
+            String sql="delete from "+day+"events where Eventid=?";
+            pst= conn.prepareStatement(sql);
+            pst.setString(1, Eventid);
+            pst.execute();
+            pst.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){    
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }
+        switch (day.charAt(3)) {
+            case '1':
+                Update_table_day1();
+                break;
+            case '2':
+                Update_table_day2();
+                break;
+            case '3':
+                Update_table_day3();
+                break;
+            default:
+                break;
+        }
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String s=a_day.getSelectedItem().toString();
+        try {
+            delete_event(s);
+            clear_event_pannel();
+        } catch (SQLException ex) {
+            Logger.getLogger(Homepageadmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        try {
+            delete_a_hall();
+            room_table();
+            clear_room_pannel();
+        } catch (SQLException ex) {
+            Logger.getLogger(Homepageadmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void sort_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sort_2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sort_2ActionPerformed
+
+    private void sort_2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sort_2ItemStateChanged
+        // TODO add your handling code here:
+        String value=sort_2.getSelectedItem().toString();
+        if(value.equals("Hall ID")){
+            SORT2now(1);
+            
+        }
+        else if(value.equals("Available Rooms")){
+            SORT2now(2);
+        }
+        else if(value.equals("Hall Name")){
+            SORT2now(3);
+        } else {
+        }        
+    }//GEN-LAST:event_sort_2ItemStateChanged
+public void ccclose(){
+        WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Successful LogOut!!");
+        ccclose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+private void SORT2now(int x){
+        String sql="select * from HallList order by ";
+        if(x==1){
+            sql+="HallID";
+            try{
+                pst= conn.prepareStatement(sql);            
+                rs=pst.executeQuery();
+                roomtable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){}
+        }   
+      }
+        else if(x==2){
+            sql+="Available_Rooms";
+            try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            roomtable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){}
+        }   
+      }
+        else if(x==3){
+            sql+="HallName";
+            try{
+            pst= conn.prepareStatement(sql);            
+            rs=pst.executeQuery();
+            roomtable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally{
+        try{
+            rs.close();
+            pst.close();
+        }
+        catch(SQLException | HeadlessException e){}
+        }   
+      }
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Homepageadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Homepageadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Homepageadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Homepageadmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Homepageadmin().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField COST;
+    private javax.swing.JTextField HALLID;
+    private javax.swing.JTextField NAME;
+    private javax.swing.JTextField ROOMS;
+    private javax.swing.JTextField VACANCY;
+    private javax.swing.JComboBox<String> a_day;
+    private javax.swing.JTextField a_description;
+    private javax.swing.JTable a_etable;
+    private javax.swing.JTextField a_etime;
+    private javax.swing.JTextField a_id;
+    private javax.swing.JTextField a_name;
+    private javax.swing.JTextField a_seats;
+    private javax.swing.JComboBox<String> a_sort;
+    private javax.swing.JTextField a_stime;
+    private javax.swing.JTextField a_venue;
+    private javax.swing.JTextField acost;
+    private javax.swing.JButton clear_a;
+    private javax.swing.JButton clear_e;
+    private javax.swing.JComboBox<String> e_day;
+    private javax.swing.JTextField e_description;
+    private javax.swing.JTextField e_end1;
+    private javax.swing.JTextField e_end2;
+    private javax.swing.JTextField e_name;
+    private javax.swing.JTextField e_seats;
+    private javax.swing.JTextField e_start1;
+    private javax.swing.JTextField e_start2;
+    private javax.swing.JTextField e_venue;
+    private javax.swing.JTextField hallnames;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable roomtable;
+    private javax.swing.JComboBox<String> sort_2;
+    private javax.swing.JTextField totalrooms;
+    // End of variables declaration//GEN-END:variables
+}
